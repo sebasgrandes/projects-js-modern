@@ -2,7 +2,7 @@
 
 Mis apuntes de la parte teórica del curso los encuentras [aquí](https://github.com/sebasgrandes/apuntes-js-modern/).
 
-|  #  |                                                               Proyectos (Links de las carpetas)                                                               |                            Enlace                            |
+|  #  |                                                       Proyectos (Links de las carpetas del repositorio)                                                       |                Enlace a la vista del proyecto                |
 | :-: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------: |
 | 01  |                 [Simulador de envio de email](https://github.com/sebasgrandes/projects-js-modern/tree/main/projects/01-sim-envio-email-main)                  |      [Ver Proyecto](https://sebasgrandes6.netlify.app/)      |
 | 02  |                     [Buscador de autos](https://github.com/sebasgrandes/projects-js-modern/tree/main/projects/02-buscador-autos-js-main)                      |      [Ver Proyecto](https://sebasgrandes7.netlify.app/)      |
