@@ -1,0 +1,49 @@
+# Ciclo de Vida de un Service Workers
+
+El ciclo de vida de un Service Worker es fundamental para entender cómo funcionan estos trabajadores de fondo en las aplicaciones web y está compuesto por las siguientes fases:
+
+### 1. Registro
+
+Antes de que un service worker pueda controlar a los clientes, necesita ser registrado. La etapa de registro le indica al navegador dónde se encuentra el script del service worker y prepara al service worker para la instalación.
+
+```javascript
+navigator.serviceWorker.register("/sw.js");
+```
+
+### 2. Instalación
+
+Una vez que un service worker es registrado, el navegador (automaticamente) intentará instalarlo (si es un nuevo service worker o si su contenido ha cambiado desde la última instalación). Durante la etapa de instalación, generalmente precacheamos algunos recursos utilizando el evento `install`.
+
+```javascript
+self.addEventListener("install", (event) => {
+    // Precachear recursos, etc.
+});
+```
+
+### 3. Activación
+
+Después de que un service worker es instalado, pasa por la fase de activación. Durante este proceso, puedes gestionar las limpiezas y actualizaciones necesarias para tu app, como gestionar las caches antiguas.
+
+```javascript
+self.addEventListener("activate", (event) => {
+    // Limpiar caches antiguas, etc.
+});
+```
+
+### 4. Control
+
+Después de la activación, el service worker controlará todas las páginas que estén dentro de su alcance y se activará de inmediato para las páginas que ya estén cargadas. En esta etapa, el service worker puede interceptar las solicitudes, gestionar las respuestas, y en general actuar como un proxy entre tu app y la red, o incluso servir contenido de manera totalmente local.
+
+### 5. Terminación
+
+Los service workers pueden ser terminados por el navegador cuando no están en uso y ser reiniciados cuando son necesarios de nuevo para guardar memoria.
+
+### 6. Actualización
+
+Para actualizar un service worker, necesitas registrar un script de service worker con una cantidad de bytes diferente. Si el navegador detecta una diferencia (un carácter diferente), considerará que es un nuevo service worker y procederá a instalarlo (y luego activarlo).
+
+```javascript
+// Una pequeña diferencia en el script desencadenará la actualización.
+```
+
+Este ciclo de vida permite a los service workers ser eficientes, y permite actualizaciones sin afectar a los usuarios mientras están utilizando la aplicación. La próxima vez que el usuario cargue la página (o la refresque), el nuevo service worker tomará el control.

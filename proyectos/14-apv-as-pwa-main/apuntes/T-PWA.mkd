@@ -1,0 +1,44 @@
+### Resumen
+
+-   Las PWA son basicamente son "aplicaciones web" (es una web) que pueden ser agregadas a la pantalla de inicio de los moviles, o "instalada" (agregada en realidad) en el escritorio... tal es el caso de Crehana.
+-   Los service workers son las tecnologías que le confiere a la PWA las caracteristicas de offline, background sync, notificaciones push, etc...
+
+---
+
+-   Una PWA es simplemente una web que utiliza ciertas tecnologías y patrones de diseño para proporcionar una experiencia más robusta y rica en características, similar a la que se obtiene con aplicaciones nativas, y esto es aplicable tanto para móviles como para desktop.
+
+### PWA (Progressive Web App)
+
+Una **PWA** o **Aplicación Web Progresiva** es un tipo de aplicación web que utiliza las últimas tecnologías web para proporcionar una experiencia de usuario similar a la de una aplicación móvil nativa. Las PWA ofrecen una serie de características y ventajas, como:
+
+-   **Experiencia de Usuario (UX):** Ofrecen una experiencia similar a las aplicaciones nativas, con interacciones y navegaciones suaves.
+-   **Offline Access:** Pueden funcionar sin conexión a Internet o en conexiones inestables, gracias a los service workers.
+
+-   **Instalable:** Permiten a los usuarios instalar la aplicación en sus dispositivos, añadiendo un icono en la pantalla de inicio sin necesidad de pasar por las tiendas de aplicaciones.
+
+-   **Actualizaciones automáticas:** Se actualizan automáticamente sin requerir intervención del usuario.
+-   **Seguridad:** Se sirven a través de HTTPS para asegurar la integridad y la privacidad de los datos del usuario.
+
+-   **Responsive:** Se adaptan a cualquier tamaño de pantalla, tanto en dispositivos móviles como en computadoras de escritorio.
+
+### PWA sin Service Workers
+
+-   Una aplicación web puede seguir siendo una PWA sin un Service Worker (dependiendo de a quién le preguntes), ciertamente perdería una serie de capacidades cruciales que mejoran significativamente la experiencia del usuario, que son las que se muestra a continuación:
+
+### Service Workers
+
+Los **Service Workers** son una tecnología clave para las PWA y tienen un papel fundamental en la mejora de la experiencia del usuario al permitir el funcionamiento offline y las notificaciones push, entre otras características. Aquí algunas características y funcionalidades de los service workers:
+
+-   **Proxy de red:** Pueden interceptar y manejar las solicitudes de red, permitiendo que las PWA funcionen offline al almacenar y recuperar recursos del caché.
+
+-   **Background Sync:** Permiten sincronizar datos en segundo plano, incluso después de que el usuario ha cerrado la aplicación.
+
+-   **Notificaciones Push:** Pueden recibir y mostrar notificaciones push del servidor, incluso cuando la aplicación web no está abierta en el navegador.
+
+-   **Ciclo de Vida Independiente:** Tienen un ciclo de vida separado de la página web, por lo que pueden ejecutarse en segundo plano, sin interferir con la interfaz de usuario.
+
+-   **Sin Acceso al DOM:** No tienen acceso directo al Document Object Model (DOM) de la página y deben comunicarse con las páginas a través de mensajes postMessage.
+
+-   **Programación basada en eventos:** Los service workers responden a eventos como fetch (para solicitudes de red), push (para notificaciones push), y sync (para sincronizaciones en segundo plano).
+
+Las PWA y los service workers juntos permiten crear experiencias web que son rápidas, fiables y capaces de funcionar en diversas condiciones de red, proporcionando ventajas significativas tanto para desarrolladores como para usuarios.

@@ -1,0 +1,27 @@
+### Sobre la caché
+
+"Cachear" es un término utilizado comúnmente en el desarrollo web y en la informática en general, que hace referencia al proceso de almacenar datos en una "caché" para que las futuras solicitudes de esos datos puedan ser servidas de manera más rápida.
+
+La **caché** es una ubicación de almacenamiento temporal para guardar datos que se utilizan con frecuencia, de modo que puedan ser accedidos más rápidamente en el futuro. Una vez que los datos se almacenan en la caché, futuras solicitudes pueden ser atendidas utilizando los datos cacheados en lugar de recuperarlos o recalcularlos.
+
+En el contexto de los Service Workers y las aplicaciones web, "cachear" generalmente se refiere a almacenar recursos de la web, como archivos HTML, CSS, JavaScript, imágenes y otros recursos multimedia, para que puedan ser utilizados sin necesidad de una nueva solicitud de red la próxima vez que se necesiten. Los Service Workers permiten que los desarrolladores gestionen la caché manualmente, ofreciendo un gran control sobre qué recursos se cachean, cuándo se actualizan, y cuándo se eliminan.
+
+Ejemplo básico en un Service Worker de cómo cachear recursos durante el evento de instalación:
+
+```javascript
+self.addEventListener("install", function (event) {
+    event.waitUntil(
+        caches.open("my-cache-name").then(function (cache) {
+            return cache.addAll([
+                "/",
+                "/index.html",
+                "/styles.css",
+                "/script.js",
+                "/image.jpg",
+            ]);
+        })
+    );
+});
+```
+
+Este ejemplo abre una caché llamada `'my-cache-name'`, y luego añade varios recursos a ella. Una vez que estos recursos están cacheados, pueden ser servidos directamente desde la caché, lo que puede mejorar significativamente la velocidad de carga de la página y permitir que la aplicación funcione incluso cuando el usuario está offline.

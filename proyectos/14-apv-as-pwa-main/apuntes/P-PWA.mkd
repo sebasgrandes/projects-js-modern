@@ -1,0 +1,38 @@
+### Pasos para crear una PWA
+
+1. Crear un archivo manifest.json (obligatorio)
+
+-   name: nombre la app
+-   short_name
+-   start_url: pantalla de inicio una vez que cargue el proyecto
+-   display: como se mostrará la app... standalone (como una app independiente), fullscreen (en fullscren), browser (una pestaña en el navegador), minimal-ui (app independiente pero con un minimo de elementos...)
+-   orientation: portrait (funcionara unicamente con el celular de pie)
+-   icons: iconos que se usarán para tu aplicación (por ejemplo cuando se instalará en movil, escritorio, tablet, etc)
+
+2. Registra el manifest.json en el html
+
+-   En cualquier lado, siempre y cuando esté en el head (mediante un link rel)
+
+<!-- hasta aqui ya tendrías digamos la base... lighthouse te dice que todavia te falta instalar service workers para que se registre como PWA  -->
+
+3. Service Workers
+
+-   crea tu archivo sw.js en la raiz
+-   registra (con .register) ese archivo en un archivo app.js dentro de tu carpeta js
+-   en tu archivo sw.js escucha el install y active
+
+4. Instalación de PWA
+
+-   3 condiciones para que una PWA pueda ser instalada: 1. contar con un manifest valido 2. dominio con https o localhost 3. tener registrado el event listener de fetch
+-   en tu archivo sw.js escucha el fetch
+    <!-- En el contexto de un Service Worker, un evento "fetch" es un tipo de evento que se dispara cada vez que se hace una solicitud HTTP (como cargar una página web, una imagen, una hoja de estilos CSS, un archivo JavaScript, etc.) dentro del alcance del Service Worker. -->
+    <!-- * Hasta aqui ya eres capaz de instalar tu PWA -->
+-   disponible sin conexion, mediante 2 requisitos: 1. mediante el caching en el eventListener de "install" -> caches.open y cache.addAll 2. en eventListener "fetch" coloca e.responseWit para encontrar coincidencias de las peticiones http en el cache y retornarlas
+-   crear pagina de error: crea error.html añadelo al catch de fetch y añadelo a tus archivos cacheables
+<!--
+si solo quieres que tus nuevos cambios realizados (ya sea en un index.html) se vean reflejados, entonces solo limpia cache storage y recarga
+si quieres limpiar todo, desde la chrome dev tool debes: unregister serviceworker, clear storage, limpiar cache storage
+-->
+-   como realizar nuevas secciones del PWA: 
+borra los demas caches del navegador del usuario: en eventListener "activate" usa .filter y .map
+para actualizar tus cambios solo tienes que cambiar de nombre a tu nombreCache y activar el sw listo, se actualizara la cache... recuerda que tienes "activar" el sw desde application > service worker

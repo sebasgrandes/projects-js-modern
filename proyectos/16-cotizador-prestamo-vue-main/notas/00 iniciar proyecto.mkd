@@ -1,0 +1,59 @@
+# inicia tu proyecto
+
+## instala vue mediante vite
+
+en el disco C creé la carpeta 55-Introduccionavue
+
+<!-- fue en el C porque en el D al hacer "npm install" me daba error. también lo hice con powershell -->
+
+situandote en tu carpeta 55-Introduccionavue
+
+1. terminal de vscode u otra: `npm create vite@latest`
+
+-   nombra tu proyecto (cotizadorprestamosvue) , selecciona tu framework (vue) y la variante (js),
+-   creará una carpeta del proyecto dentro de la que estabas, muevete con "cd" en la terminal hacia esa carpeta
+
+2. terminal: `npm install`
+3. terminal: `npm run dev` (arranca el servidor)
+4. abre unicamente tu carpeta de proyecto (cotizadorprestamosvue) en vscode, en el tendrás archivos
+
+-   limpia los que usaras: app.vue (este es un componente), contenido de style.css
+
+## instala las extensiones utiles de vue
+
+1. instala la extension "Vue Language Features (Volar)", "vue (sintax highlight)" y "Vue 3 Snippets" en vs code
+2. instala la extension Vue.js devtools en chrome
+
+<!-- recuerda que cada que cierres tu proyecto y vuelvas a abrir debes lanzar el servidor con `npm run dev` -->
+
+## instalando tailwind css
+
+1. terminal: `npm install -D tailwindcss postcss autoprefixer`
+2. terminal: `npx tailwindcss init -p` /esto nos creará los archivos tailwind y post css config
+3. modificas tus archivos:
+
+-   en `tailwind.config.js`: colocas dentro de content que archivos usarán tailwindcss (`./index.html`, `./src/**/*.{vue,js,ts,tsx,jsx}`)
+-   en `style.css`: colocas los "tailwind" (@tailwind base; @tailwind components; @tailwind utilities)
+<!-- reinicia tu servidor para que tome los cambios que hiciste (npm run dev) -->
+
+4. instala la extension tailwind css intellisense
+5. ya puedes agregar codigo tailwind a tus archivos js, jsx, etc...
+6. en vue js si escribes tus clases con la etiqueta "class" (no como en react donde debias escribir "classname")
+
+<!-- escribe: npm run dev -->
+
+## comenza con el codigo
+
+1. codea en App.vue
+2. coloca tus componentes en la carpeta "components" (esta carpeta asu vez esta dentro de la carpeta src). estos van con mayuscula (tanto el archivo como las funciones)
+3. importas tus componentes al App.vue (con la sintaxis recomendada)
+4. creea e importa y usa tus componentes siguiendo las buenas practicas
+
+# deployment
+
+en tu package.json, scripts tienes un "build": "vite build"
+
+1. terminal: npm run build
+ <!-- esto crea una carpeta que puedo subir a netlify -->
+
+2. arrastra esa carpeta a netlify y listo

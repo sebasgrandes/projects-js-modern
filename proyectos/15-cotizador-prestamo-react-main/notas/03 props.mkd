@@ -1,0 +1,27 @@
+# que es el props en react?
+
+En React, `props` es una abreviatura de `properties` (propiedades en inglés). Se trata de un mecanismo para pasar datos de un componente padre a un componente hijo en React, que es una biblioteca de JavaScript para construir interfaces de usuario. Los props son inmutables dentro del componente hijo, lo que significa que no pueden ser modificados por el componente que los recibe.
+
+Cuando creas un componente en React, puedes pasar props de la siguiente manera:
+
+```jsx
+<ComponenteHijo algunProp="valor" otroProp={otroValor} />
+```
+
+Dentro del componente hijo, puedes acceder a estos props utilizando `this.props` en componentes de clase, o directamente como argumentos en componentes funcionales:
+
+```jsx
+// Componente de clase
+class ComponenteHijo extends React.Component {
+    render() {
+        return <h1>{this.props.algunProp}</h1>;
+    }
+}
+
+// Componente funcional
+function ComponenteHijo(props) {
+    return <h1>{props.algunProp}</h1>;
+}
+```
+
+Los props permiten que los componentes sean dinámicos y reutilizables al darles la capacidad de recibir datos de su entorno en vez de tener datos fijos codificados dentro de su estructura. Esto es esencial en la construcción de aplicaciones con muchas piezas interactivas y reactivas en React.

@@ -1,0 +1,26 @@
+# ! En resumen, para mi aplicación de react subida a github, lo principal que no se sube es la carpeta .vscode, dist (que es lo que genera digamos vite para el deploy) y node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,0 +1,15 @@
+# que es el v-model en vue js?<!--  -->
+
+El V-Model en Vue.js es una directiva que proporciona una forma sencilla y poderosa de implementar enlace de datos bidireccional entre un elemento de formulario HTML y el estado de la aplicación Vue. En otras palabras, el V-Model sincroniza automáticamente el valor de la propiedad de datos de Vue con el valor de entrada de un campo de formulario, y viceversa.
+
+Aquí está cómo funciona el V-Model:
+
+1. **Enlace de Datos Bidireccional**: Cuando se utiliza `v-model` en un elemento de formulario como `<input>`, `<textarea>` o `<select>`, Vue.js crea un enlace bidireccional en el valor de ese elemento. Esto significa que cualquier actualización en el campo de entrada actualizará la propiedad de datos en la instancia de Vue, y cualquier cambio en la propiedad de datos actualizará el campo de entrada.
+
+2. **Facilidad de Uso**: Con `v-model`, no necesitas escribir manejadores de eventos para escuchar los cambios en los elementos de formulario y actualizar los datos de Vue manualmente. Vue maneja todo esto internamente, lo que hace que el código sea más limpio y fácil de mantener.
+
+3. **Modificadores**: Vue.js proporciona modificadores para `v-model` que permiten personalizar el comportamiento del enlace de datos bidireccional para casos de uso específicos. Por ejemplo, `.lazy`, `.number`, y `.trim` son modificadores que alteran la forma en que `v-model` maneja la entrada del usuario.
+
+4. **Componentes Personalizados**: Además de los elementos de formulario HTML estándar, `v-model` también se puede utilizar en componentes personalizados de Vue, permitiendo que los componentes internos se comuniquen con los datos de la instancia de Vue de forma bidireccional.
+
+El uso de `v-model` es una parte fundamental de la mayoría de las aplicaciones Vue, ya que simplifica la gestión de estados de formulario y reduce la cantidad de código necesaria para crear interfaces de usuario interactivas.

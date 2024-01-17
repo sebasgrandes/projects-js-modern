@@ -1,0 +1,138 @@
+# NOTA PARA DESARROLLO LOCAL
+
+Nota para Desarrollo Local:
+
+-   Si estás utilizando una extensión como "Live Server" en VSCode para desarrollar localmente, la raíz del servidor (para rutas absolutas) generalmente será el directorio raíz de tu proyecto o workspace - el mismo nivel donde se encuentra tu archivo index.html principal.
+-   _Raiz de servidor = directorio raíz de tu proyecto o workspace en vs code_
+
+<!-- en no local:
+**Las rutas absolutas y relativas en tu código no están definidas por el workspace que tengas abierto en Visual Studio Code (VSCode) ni por otro editor de código. Las rutas están definidas en relación con la estructura de archivos de tu proyecto en el sistema de archivos del servidor o tu máquina local.**... cierto pero yo estoy trabajando en local con live server (por lo que lo de abajo [hasta la linea separatoria] aplica para este caso)...
+ -->
+
+ASÍ QUE... recuerda que tu rota absoluta puede ser distinto, dependiendo de que workspace que tienes abierto en vs code
+
+-   si tienes como workspace la carpeta del curso entero (que contiene +40 carpetas) -> **tendras como ruta absoluta este directorio raíz de tu proyecto o workspace en vs code (la carpeta con +40 carpetas)**
+    si lanzas un archivo archivo html de la carpeta 47 con live server -> tendras como dominio "http://127.0.0.1:5500/47-ServiceWorkers-PWA/index.html"
+-   si tienes como workspace la carpeta 47 -> **tendrás como ruta absoluta este directorio raíz de tu proyecto o workspace en vs code (la carpeta 47)**
+    si lanzas un archivo html de la carpeta 47 con live server -> tendras como dominio "http://127.0.0.1:5500/index.html"
+
+existe un caso "especial" que en realidad no es especial sino que asi funciona, solo es un concepto que debes tener claro y es el de: # CONTEXTO ESPECIAL: contexto de la ventana -> script.js (que se refiere a ./sw.js) en index.html
+
+---
+
+¡Por supuesto! El concepto aquí tiene que ver con el **contexto de ejecución** de un script en relación con los archivos y el navegador.
+
+## Contexto de Ejecución en JavaScript:
+
+Cuando se ejecuta un archivo JavaScript en el navegador, se ejecuta en un contexto específico. El "contexto" se refiere al entorno en el que el código se está ejecutando. En la web, normalmente hablamos de dos contextos principales:
+
+1. **Contexto de la ventana**: Cuando tu JavaScript se ejecuta como parte de una página web (por ejemplo, a través de una etiqueta `<script>` en tu HTML), se ejecuta en el contexto de esa página web y tiene acceso al `window` y al DOM de la página.
+
+2. **Contexto del Service Worker**: Cuando tu JavaScript se ejecuta como un Service Worker, se ejecuta en un contexto separado del DOM y no tiene acceso directo a la página web ni al objeto `window`. En su lugar, tiene acceso a `self`, que representa al propio Service Worker.
+
+### Rutas de Archivo en Diferentes Contextos:
+
+Ahora, considerando estas definiciones, vamos a profundizar en tu pregunta:
+
+# CONTEXTO ESPECIAL: contexto de la ventana -> script.js (que se refiere a ./sw.js) en index.html
+
+-   **"./" en el contexto de la ventana**: Si tu script JavaScript (`script.js`) está vinculado en tu `index.html` y usa una ruta como "./sw.js", esa ruta se interpreta en relación con la ubicación de `index.html`, no `script.js`, ya que `index.html` es lo que se está cargando en el navegador (es decir, la ubicación desde la que se está ejecutando el contexto).. (por lo que si scripts.js hace referencia a una imagen o cualquier otro recurso usando una ruta relativa, esa ruta se interpreta relativa a index.html, no a app.js.)
+
+    ```html
+    <!-- index.html -->
+    <script src="path_to_your_script/script.js"></script>
+    ```
+
+    ```javascript
+    // script.js
+    navigator.serviceWorker.register("./sw.js");
+    ```
+
+    En este caso, aunque `script.js` es el que contiene el código, `./sw.js` se resuelve con respecto a `index.html` porque `script.js` se está ejecutando en el contexto de la página web que está definido por `index.html`.
+
+-   **"./" en el contexto del Service Worker**: Si tu código JavaScript está en `sw.js` (un Service Worker), las rutas se resolverían en relación con la ubicación de `sw.js`, ya que este script se ejecuta en un contexto separado del DOM de la página web.
+
+    ```javascript
+    // sw.js
+    importScripts("./some_other_script.js");
+    ```
+
+    En este caso, `./some_other_script.js` se resolvería con respecto a `sw.js`, porque `sw.js` se ejecuta en su propio contexto y no tiene relación directa con `index.html`.
+
+Espero que esto aclare cómo "./" puede apuntar a diferentes ubicaciones dependiendo del contexto en el que se ejecute el código. Si tienes más preguntas o necesitas aclaraciones adicionales, ¡no dudes en preguntar!
+
+**Este segundo contexto es simplemente (la ruta relativa normal) el de las carpetas y archivos, que si estoy en una utilizo .. para retroceder o ./ para referirme a la carpeta en la que estoy situado y así**
+
+---
+
+# Esta explicacion es la de carpetas normales y blabla... lo clasico. el uni caso especial es el de arriba
+
+¡Perfecto! Aquí tienes una explicación centrada en rutas relativas y absolutas:
+
+## Rutas de Archivos: Relativas y Absolutas
+
+Las **rutas** en programación y desarrollo web se utilizan para localizar y cargar archivos, ya sean scripts, imágenes, estilos, etc. Estas rutas pueden clasificarse principalmente en **rutas relativas** y **rutas absolutas**.
+
+#### 1. Rutas Relativas:
+
+Si no estableces alguna diagonal al inicio como por ejemplo en: <link rel="stylesheet" href="css/bootstrap.css" /> entonces por defecto se tomará la ruta relativa.
+
+Las **rutas relativas** son aquellas que se especifican en relación con la ubicación del archivo actual. No comienzan con un `/` (barra inclinada) y su destino se determina en relación con la ubicación del archivo que las utiliza.
+
+-   **"./"**: Indica el directorio actual.
+
+    ```javascript
+    // Desde el archivo 'index.html' en la raíz del proyecto
+    <img src="./images/photo.jpg">
+    ```
+
+    Busca `photo.jpg` en la carpeta `images` que debe estar en el mismo directorio que `index.html`.
+
+-   **"../"**: Indica un directorio nivel arriba del archivo actual.
+    ```css
+    /* Desde un CSS en 'styles/css/main.css' */
+    background-image: url("../images/background.jpg");
+    ```
+    Este CSS buscará `background.jpg` retrocediendo un nivel desde `styles/css` y luego entrando en `images`.
+
+#### 2. Rutas Absolutas:
+
+Las **rutas absolutas** son aquellas que se especifican desde la raíz del sistema de archivos (o del servidor/host en un contexto web) **(que tienes abierto en vs code)**. En el desarrollo web, a menudo significa desde la raíz del dominio (recuerda que tu dominio puede ser distinto, dependiendo que workspace lances al navegador con live server... si lanzar un archivo en un workspace del curso entero tendra una ruta distinta a si tienes como workspace solo una carpeta).
+
+-   **"/"**: Indica la raíz del dominio.
+    ```html
+    <!-- Desde cualquier lugar en tu proyecto -->
+    <link rel="stylesheet" href="/styles/main.css" />
+    ```
+    No importa desde qué archivo se especifica esta ruta, siempre buscará `main.css` directamente dentro de la carpeta `styles` en la raíz del dominio.
+
+### Nota sobre Contexto:
+
+Como mencionamos anteriormente, es vital recordar que las rutas pueden ser interpretadas en diferentes contextos en la web (por ejemplo, contexto de la página web vs. contexto del Service Worker). Aquí es donde la ubicación del archivo que **utiliza** la ruta, o el contexto en el que se ejecuta el código, influyen en cómo se resuelve la ruta.
+
+### Ejemplo Práctico:
+
+Considere esta estructura de proyecto:
+
+```
+mi_proyecto/
+│
+├── images/
+│    └── logo.png
+├── styles/
+│    └── main.css
+├── scripts/
+│    └── app.js
+└── index.html
+```
+
+-   Desde `index.html`, para referenciar:
+
+    -   `logo.png`: `./images/logo.png` o `/images/logo.png`
+    -   `main.css`: `./styles/main.css` o `/styles/main.css`
+    -   `app.js`: `./scripts/app.js` o `/scripts/app.js`
+
+-   Desde `main.css`, para referenciar:
+    -   `logo.png`: `../images/logo.png` o `/images/logo.png`
+
+Recuerda siempre verificar tus rutas y, si es posible, utilizar herramientas de desarrollo de navegadores para depurar problemas relacionados con las rutas de los archivos. Si necesitas más detalles o ejemplos adicionales, ¡no dudes en preguntar!

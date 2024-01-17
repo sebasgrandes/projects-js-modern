@@ -1,0 +1,49 @@
+# dime que estoy haciendo aqui: import { useState } from "react"; y paso a paso el de aqui: const [cantidad, setCantidad] = useState(10000);
+
+Estás utilizando el hook `useState` de la biblioteca de React, un framework de JavaScript para construir interfaces de usuario, principalmente utilizadas en aplicaciones de una sola página.
+
+Paso a paso, aquí está lo que sucede en tu código:
+
+1. **Importación del Hook useState:**
+   Con la línea `import { useState } from "react";`, estás importando el hook `useState` desde la biblioteca de React. Esto te permite usar el estado dentro de los componentes funcionales de React.
+
+2. **Inicialización del Estado con useState:**
+   La expresión `const [cantidad, setCantidad] = useState(10000);` hace varias cosas:
+
+    - **Declaración de la Variable de Estado:**
+      Se declara una nueva variable de estado llamada `cantidad`. Al usar `useState`, le estás diciendo a React que quieres que este componente tenga su propio estado privado.
+
+    - **Inicialización de la Variable de Estado:**
+      Al pasar `10000` al hook `useState`, estás inicializando la variable de estado `cantidad` con un valor inicial de 10,000. Este valor es el estado inicial y puede ser cualquier tipo válido en JavaScript: número, cadena, objeto, arreglo, etc.
+
+    - **Declaración de la Función Actualizadora:**
+      Se declara una función llamada `setCantidad`. Esta función es la que utilizarás para actualizar el valor de `cantidad` en el futuro. Cuando quieras cambiar el valor de `cantidad`, llamarás a `setCantidad` con el nuevo valor.
+
+    - **Array Destructuring:**
+      El uso de corchetes alrededor de `[cantidad, setCantidad]` es un ejemplo de "destructuring" en JavaScript. Esto permite desempacar valores de arreglos o propiedades de objetos en variables distintas. En este caso, estás desempacando el arreglo devuelto por `useState` en dos variables diferentes, `cantidad` para el valor actual del estado y `setCantidad` para la función que actualiza ese estado.
+
+En resumen, estás configurando un estado inicial en tu componente de React con un valor de 10,000 y proporcionando una función para actualizar ese estado cuando sea necesario. Cada vez que `setCantidad` es llamada para actualizar el estado, React se encargará de re-renderizar el componente con el nuevo valor de `cantidad`.
+
+# que array me duelve useState?
+
+El hook `useState` devuelve un par de valores en forma de un array. El primer elemento del array es el valor actual del estado, y el segundo elemento es una función que te permite actualizar ese estado. Aquí hay una descripción de los dos valores que devuelve `useState`:
+
+1. **Valor Actual del Estado (State Variable):**
+   Este es el valor actual de tu variable de estado. En el ejemplo que proporcionaste, `cantidad` es la variable que tiene el valor actual del estado, que inicialmente es `10000`. Este valor puede cambiar durante el ciclo de vida del componente cada vez que se llama a la función actualizadora.
+
+2. **Función Actualizadora del Estado (Setter Function):**
+   Esta función se utiliza para actualizar el valor del estado. Cuando se llama a esta función y se le pasa un nuevo valor, el estado del componente se actualiza con ese nuevo valor, y el componente se re-renderiza automáticamente para reflejar el cambio de estado. En tu ejemplo, `setCantidad` es la función que puedes usar para cambiar el valor de `cantidad`.
+
+El uso de array destructuring en la declaración te permite dar nombres a estos valores devueltos para que puedas referenciarlos fácilmente en tu componente. Aquí está la sintaxis general de cómo usar `useState`:
+
+```javascript
+const [stateValue, setStateValue] = useState(initialStateValue);
+```
+
+Donde:
+
+-   `stateValue` es una variable que representa el valor actual del estado.
+-   `setStateValue` es la función que puedes llamar para actualizar `stateValue`.
+-   `initialStateValue` es el valor inicial que quieres darle al estado.
+
+En resumen, `useState` te devuelve un array de dos elementos, donde el primero es el valor actual del estado y el segundo es una función que puedes utilizar para actualizar ese valor.

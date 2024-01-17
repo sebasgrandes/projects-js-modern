@@ -1,0 +1,14 @@
+# en mi App.vue tengo esto... el evento input que es? y cual es la diferencia con el onchange?
+
+En Vue.js, el evento `@input` es utilizado para detectar cambios en un campo de entrada (`<input>`) mientras el usuario está interactuando con él. Cada vez que el usuario mueve el deslizador (slider) de un input tipo `range`, el evento `input` se dispara, lo que significa que puedes capturar el valor del deslizador en tiempo real, en cuanto el usuario lo cambia.
+
+Por otro lado, `@change`, o el evento `change` en JavaScript puro, solo se dispara cuando se ha completado un cambio en el elemento de entrada y el elemento pierde el enfoque (por ejemplo, el usuario deja de interactuar con el control). En el caso de un `<input type="range">`, esto podría ser cuando el usuario suelta el deslizador después de moverlo.
+
+La diferencia principal es:
+
+-   `@input` se activa inmediatamente cuando el valor del `<input>` cambia.
+-   `@change` se activa cuando el elemento pierde el enfoque después de que el valor haya cambiado.
+
+Para un `<input type="range">`, si quieres que algo se actualice en tiempo real mientras el usuario arrastra el deslizador, usarías `@input`. Si solo te interesa el valor final después de que el usuario haya terminado de interactuar con el deslizador, usarías `@change`.
+
+En términos de rendimiento, `@input` podría provocar una mayor cantidad de actualizaciones porque se dispara con cada pequeño cambio, mientras que `@change` solo se dispara una vez por cambio de enfoque, lo que podría ser menos demandante desde el punto de vista de los recursos, especialmente si la lógica que maneja el evento es compleja o computacionalmente intensiva.
