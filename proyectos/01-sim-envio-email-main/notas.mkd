@@ -1,0 +1,21 @@
+<!-- este codigo -->
+
+email.email = "123";
+email.asunto = "456";
+email.mensaje = "678";
+
+<!-- es igual a este -->
+
+email["email"] = "123";
+email["asunto"] = "456";
+email["mensaje"] = "678";
+
+<!-- ! pero NO ES IGUAL a este -->
+
+email.email = "123";
+email.asunto = "456";
+email.mensaje = "678";
+
+<!-- en este ultimo email asunto o mensaje pueden hacer referencia a otros elementos como por ejemplo e.target.name... etc, objetos creo o no se -->
+
+---
