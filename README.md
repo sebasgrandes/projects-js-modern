@@ -25,4 +25,7 @@ Mis apuntes de la parte teórica del curso los encuentras [aquí](https://github
 
 Proyectos de JavaScript realizados como parte del curso Javascript Moderno de Juan Pablo de la Torre Valdez.
 
+![451shots_so](https://github.com/sebasgrandes/projects-js-modern/assets/105091502/cb6b9911-bf47-4a59-b564-8c01992718a2)
+
+
 Visita la [página del curso](https://www.udemy.com/course/javascript-moderno-guia-definitiva-construye-10-proyectos/) para inscribirte.
